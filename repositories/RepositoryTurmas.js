@@ -1,26 +1,27 @@
-import con from "../database/conection.js";
-async function Listar(){
+import pool from '../database/connection.js';
+
+async function Listar() {
     let sql = "SELECT * FROM Turmas";
-    const [Turmas] = await (con.connection).execute(sql);
+    const [Turmas] = await pool.query(sql);
     return Turmas;
 }
 
-async function Inserir(nome, sobrenome){
-    let sql = "INSERT INTO TURMA(NOME, ID) VALUES (?,?)";
-    const [Turmas] = await (con.connection).query(sql, [nome, id]);
-    return Turmas;
-}
-async function Editar(id, nome){
-    let sql = "UPDATE ALUNO SET NOME=?, SOBRENOME=? WHERE MATRICULA=?";
-    const [Turmas] = await (con.connection).query(sql, [nome, id]);
-    return {id};
+async function Inserir(nome, ID_Turma) {
+    let sql = "INSERT INTO Turmas(Nome, ID_Turma) VALUES (?, ?)";
+    const [result] = await pool.query(sql, [nome, ID_Turma]);
+    return result;
 }
 
-async function Excluir(id){
-    let sql = "DELETE FROM  TURMAS WHERE MATRICULA=?";
-    const [Turmas] = await (con.connection).query(sql, [id]);
-    return {mensagem:"Turma excluída"};
+async function Editar(ID_Turma, Nome) {
+    let sql = "UPDATE Turmas SET Nome = ? WHERE ID_Turma = ?";
+    const [result] = await pool.query(sql, [Nome, ID_Turma]);
+    return result;
 }
 
+async function Excluir(ID_Turma) {
+    let sql = "DELETE FROM Turmas WHERE ID_Turma = ?";
+    const [result] = await pool.query(sql, [ID_Turma]);
+    return { mensagem: "Turma excluída" };
+}
 
-export default {Listar, Inserir, Editar, Excluir}
+export default { Listar, Inserir, Editar, Excluir };
