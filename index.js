@@ -1,7 +1,9 @@
 import express from "express";
 import cors from "cors";
 import routes from "./routes.js";
-import { createServer } from "@vercel/node"; // opcional
+import vercelNode from '@vercel/node';
+const { createServer } = vercelNode;
+
 
 const app = express();
 
@@ -11,4 +13,3 @@ app.use(routes);
 
 // Exporta o app como uma função handler para Vercel
 export default app;
-
