@@ -1,4 +1,4 @@
-import repoTurma from "./repositories/RepositoryTurmas.js";
+import repoTurma from "../repositories/RepositoryTurmas.js";
 async function Listar(){
     const Turmas = await repoTurma.Listar();  
     return Turmas;    
