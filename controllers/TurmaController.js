@@ -1,4 +1,4 @@
-import serviceTurmas from "../services/serviceTurmas.js";
+import serviceTurmas from "./services/serviceTurmas.js";
 
 
 async function Listar(req, res){

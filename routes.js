@@ -1,6 +1,6 @@
 import { Router } from "express";
-import AlunosController from "../minha-api-node/controllers/AlunosController.js";
-import TurmaController from "../minha-api-node/controllers/TurmaController.js";
+import AlunosController from "./minha-api-node/controllers/AlunosController.js";
+import TurmaController from "./minha-api-node/controllers/TurmaController.js";
 const router = Router();
 router.get("/", (req, res) =>{
     res.status(200).send("Pagina HOME")

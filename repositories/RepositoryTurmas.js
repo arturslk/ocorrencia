@@ -1,4 +1,4 @@
-import pool from '../database/connection.js';
+import pool from './database/connection.js';
 
 async function Listar() {
     let sql = "SELECT * FROM Turmas";
