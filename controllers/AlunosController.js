@@ -1,4 +1,4 @@
-import serviceAlunos from "./services/serviceAlunos.js";
+import serviceAlunos from "../services/ServiceAluno.js";
 async function Listar(req, res){
     const Alunos = await serviceAlunos.Listar();
     res.status(200).json({Alunos});        
