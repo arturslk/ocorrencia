@@ -1,4 +1,4 @@
-import RepositoryAlunos from "../repositories/RepositoryAlunos";
+import RepositoryAlunos from '../repositories/RepositoryAlunos.js';
 async function Listar(){
     const Alunos = await RepositoryAlunos.Listar();  
     return Alunos;    
