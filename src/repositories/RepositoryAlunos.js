@@ -6,7 +6,7 @@ async function Listar(){
     return Alunos;
 }
 
-async function Inserir(Nome, sobrenome, matricula){
+async function Inserir(Nome, sobrenome, matricula, turma){
     let sql = "INSERT INTO Alunos(nome, sobrenome, matricula) VALUES (?,?,?)";
     const [Alunos] = await pool.query(sql, [Nome,sobrenome, matricula]);
     return Alunos;
