@@ -7,13 +7,13 @@ async function Listar(){
 }
 
 async function Inserir(Nome, sobrenome, matricula, turma){
-    let sql = "INSERT INTO Alunos(nome, sobrenome, matricula) VALUES (?,?,?)";
-    const [Alunos] = await pool.query(sql, [Nome,sobrenome, matricula]);
+    let sql = "INSERT INTO Alunos(nome, sobrenome, matricula) VALUES (?,?,?, ?)";
+    const [Alunos] = await pool.query(sql, [Nome,sobrenome, matricula, turma]);
     return Alunos;
 }
 async function Editar(Nome, sobrenome, matricula){
     let sql = "UPDATE Alunos SET NOME=?, SOBRENOME=? WHERE MATRICULA=?";
-    const [result] = await pool.query(sql, [Nome, sobrenome, matricula]);
+    const [result] = await pool.query(sql, [Nome, sobrenome, matricula, turma]);
     return result;
 }
 

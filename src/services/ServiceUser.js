@@ -1,14 +1,31 @@
-import repoUser from "../repositories/RepositoryUser.js";
-import bcrypt from 'bcrypt'
+import bcrypt from 'bcrypt';
+import repoUsuario from "../repositories/RepositoryUser.js";
+async function Login(email, senha){   
 
+    const user =  await repoUsuario.ListarByEmail(email);  
+    if(user.length == 0){
+         return []
+    }else{
+        if(await bcrypt.compare(senha, user.senha)){
 
-async function Login(email, senha){
-    let password = bcrypt.hash(senha, 10)
+            delete user.senha
+            user.token = "abcd1234"
+            return user;
+        }else{
 
-    const usuarios = await repoUser.Inserir(email, password );
-    return usuarios;
+            return []
+        }
+    }
+        
+               
+}
+
+async function Inserir(nome, sobrenome, email, senha, disciplina_id){
+    const password = await bcrypt.hash(senha, 10)  
+    const user = await repoUsuario.Inserir(nome, sobrenome, email, password, disciplina_id);
+    return user;
 }
 
 
 
-export default {Login}
+export default {Login, Inserir}

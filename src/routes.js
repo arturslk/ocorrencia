@@ -17,5 +17,7 @@ router.get("/Alunos", AlunosController.Listar)
 router.put("/Alunos/Matricula", AlunosController.Editar)
 router.delete("/Alunos/Matricula", AlunosController.Excluir)
 //Login
+router.post("/usuario", userController.Inserir)
 router.post("/login", userController.Login)
+
 export default router;

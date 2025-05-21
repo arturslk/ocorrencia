@@ -1,18 +1,17 @@
-import pool from '../database/connection.js';
-import bcrypt from 'bcrypt'
-
-
-async function Login(email, senha) {
-    let sql = "SELECT * FROM Usuario WHERE EMAIL = email";
-    const [User] = await pool.query(sql);
-    if(User.length == 0){
-        bcrypt.compare(await User.senha, senha)
-             return User
-    }else
+import pool from "../database/connection.js";
+async function ListarByEmail(email){
+    let sql = "SELECT * FROM usuarios WHERE EMAIL = ?";
+    const [user] = await pool.query(sql, [email]);
+    if(user.length == 0)
         return []
-
+    else
+        return user[0]
 }
 
+async function Inserir(nome, sobrenome, email, senha, disciplina_id){
+    let sql = "INSERT INTO usuarios(nome, sobrenome, email, senha, disciplina_id) VALUES (?,?,?,?,?)";
+    const [user] = await pool.query(sql, [nome, sobrenome, email, senha, disciplina_id]);
+    return user;
+}
 
-
-export default { Login };
+export default {ListarByEmail, Inserir}

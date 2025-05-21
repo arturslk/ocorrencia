@@ -5,8 +5,8 @@ async function Listar(req, res){
 }
 
 async function Inserir(req, res) {
-    const {Nome, sobrenome, matricula} = req.body;     
-    const Alunos = await serviceAlunos.Inserir(Nome, sobrenome, matricula) 
+    const {nome, sobrenome, matricula} = req.body;     
+    const Alunos = await serviceAlunos.Inserir(nome, sobrenome, matricula) 
     res.status(201).json({"mensagem":"sucesso"}) 
 }
 
