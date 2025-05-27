@@ -29,3 +29,14 @@ async function Inserir(nome, sobrenome, email, senha, disciplina_id){
 
 
 export default {Login, Inserir}
+
+
+
+
+
+
+
+
+
+
+
