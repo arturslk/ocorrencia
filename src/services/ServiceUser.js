@@ -1,24 +1,35 @@
 import bcrypt from 'bcrypt';
 import repoUsuario from "../repositories/RepositoryUser.js";
-async function Login(email, senha){   
+import jwt from 'jsonwebtoken';
 
-    const user =  await repoUsuario.ListarByEmail(email);  
-    if(user.length == 0){
-         return []
-    }else{
-        if(await bcrypt.compare(senha, user.senha)){
+const SECRET = "segredo-super-seguro";
 
-            delete user.senha
-            user.token = "abcd1234"
-            return user;
-        }else{
+async function Login(email, senha) {
+  const user = await repoUsuario.ListarByEmail(email);
+  
+  if (user.length === 0) {
+    return [];
+  }
 
-            return []
-        }
-    }
-        
-               
+  const isSenhaCorreta = await bcrypt.compare(senha, user.senha);
+
+  if (!isSenhaCorreta) {
+    return [];
+  }
+
+  delete user.senha;
+
+  // ⬇️ Gera o token JWT com ID e email
+  const token = jwt.sign(
+    { id: user.id, email: user.email },
+    SECRET,
+    { expiresIn: "1h" }
+  );
+
+  user.token = token;
+  return user;
 }
+
 
 async function Inserir(nome, sobrenome, email, senha, disciplina_id){
     const password = await bcrypt.hash(senha, 10)  

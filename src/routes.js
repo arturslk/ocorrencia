@@ -2,6 +2,7 @@ import { Router } from "express";
 import AlunosController from "./controllers/AlunosController.js";
 import TurmaController from "./controllers/TurmaController.js";
 import userController from "./controllers/userController.js";
+import autenticarToken from "./middlewares/authMiddleware.js";
 const router = Router();
 router.get("/", (req, res) =>{
     res.status(200).send("Pagina HOME")
@@ -20,5 +21,5 @@ router.delete("/Alunos/Matricula", AlunosController.Excluir)
 router.post("/usuario", userController.Inserir)
 router.post("/login", userController.Login)
 //perfil
-
+router.get("/profile", autenticarToken, userController.Profile);
 export default router;

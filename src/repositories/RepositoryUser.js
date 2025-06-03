@@ -14,4 +14,10 @@ async function Inserir(nome, sobrenome, email, senha, disciplina_id){
     return user;
 }
 
-export default {ListarByEmail, Inserir}
+async function ListarById(id) {
+  let sql = "SELECT id, nome, sobrenome, email, disciplina_id FROM usuarios WHERE id = ?";
+  const [user] = await pool.query(sql, [id]);
+  return user.length === 0 ? null : user[0];
+}
+
+export default {ListarByEmail, ListarById, Inserir}
