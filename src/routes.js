@@ -4,9 +4,7 @@ import TurmaController from "./controllers/TurmaController.js";
 import userController from "./controllers/userController.js";
 import autenticarToken from "./middlewares/authMiddleware.js";
 const router = Router();
-router.get("/", (req, res) =>{
-    res.status(200).send("Pagina HOME")
-})
+router.post("/", userController.Login)
 // TURMAS //
 router.post("/turmas", TurmaController.Inserir)
 router.get("/turmas", TurmaController.Listar)
